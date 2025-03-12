@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad676f7c-0a69-4e82-af87-bf8b3e5a64c2" name="Changes" comment="GO TIMA GO">
+    <list default="true" id="ad676f7c-0a69-4e82-af87-bf8b3e5a64c2" name="Changes" comment="GO GUYS GO">
+      <change afterPath="$PROJECT_DIR$/self_learning_ml.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/devices.db" beforeDir="false" afterPath="$PROJECT_DIR$/devices.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,20 +49,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Python.anomaly_detection.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.db_manager.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.network_info.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.router_api.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.threat_analysis.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.anomaly_detection.executor": "Debug",
+    "Python.db_manager.executor": "Debug",
+    "Python.main.executor": "Debug",
+    "Python.network_info.executor": "Debug",
+    "Python.router_api.executor": "Debug",
+    "Python.self_learning_ml.executor": "Debug",
+    "Python.threat_analysis.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -83,11 +88,20 @@
       <option name="project" value="LOCAL" />
       <updated>1741764053010</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="GO GUYS GO">
+      <option name="closed" value="true" />
+      <created>1741764726033</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741764726033</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="GO TIMA GO" />
-    <option name="LAST_COMMIT_MESSAGE" value="GO TIMA GO" />
+    <MESSAGE value="GO GUYS GO" />
+    <option name="LAST_COMMIT_MESSAGE" value="GO GUYS GO" />
   </component>
 </project>

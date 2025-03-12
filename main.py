@@ -1,55 +1,43 @@
 import time
 import threading
-import numpy as np
+
 from network_info import scan_network, get_own_network_info
 from threat_analysis import ArpSpoofDetector
-from anomaly_detection import ExtendedAnomalyDetector
-
-def send_alert(msg):
-    print("[ALERT]", msg)
-
-def start_arp_spoof_detector():
-    detector = ArpSpoofDetector()
-    detector.start()
-
-def monitor_anomalies():
-    model = ExtendedAnomalyDetector(n_estimators=50, contamination=0.1)
-    normal_data = np.random.normal(1000, 300, (10, 3))
-    model.fit(normal_data)
-    while True:
-
-        test_data = np.array([
-            [900, 1100, 950],
-            [100000, 99999, 20000]
-        ])
-        preds = model.predict(test_data)
-        for i, pred in enumerate(preds):
-            if pred == -1:
-                if i == 0:
-                    send_alert("Anomaly detected: Unknown")
-                else:
-                    send_alert("Anomaly detected: DDoS Attack")
-        time.sleep(10)
-
-def monitor_network():
-    while True:
-        devices = scan_network("192.168.1.0/24")
-        print("\nScan result (ARP):", len(devices), "devices")
-        for d in devices:
-            print("IP =", d["ip"], "MAC =", d["mac"])
-        time.sleep(10)
+from self_learning_ml import start_self_learning_ml
 
 def main():
-    ip, mac = get_own_network_info()
-    print("Current host IP =", ip, "MAC =", mac)
-    start_arp_spoof_detector()
-    t_anom = threading.Thread(target=monitor_anomalies, daemon=True)
-    t_anom.start()
-    monitor_network()
+    # Шаг 1: Показываем IP/MAC текущего хоста
+    my_ip, my_mac = get_own_network_info()
+    print(f"[INFO] Current host IP={my_ip}, MAC={my_mac}")
+
+    # Шаг 2: Однократное сканирование сети, выводим список устройств
+    devices = scan_network("192.168.1.0/24")
+    print(f"[INFO] Found {len(devices)} devices in Wi-Fi:")
+    for idx, dev in enumerate(devices, start=1):
+        print(f"   {idx}. IP={dev['ip']}, MAC={dev['mac']}")
+
+    # Шаг 3: Запускаем поток ARP-spoof детектора
+    # Он будет выводить сообщения в реальном времени ТОЛЬКО при обнаружении атаки
+    def run_arp_spoof():
+        detector = ArpSpoofDetector()
+        detector.start()
+        while True:
+            time.sleep(1)
+    t_arp = threading.Thread(target=run_arp_spoof, daemon=True)
+    t_arp.start()
+
+    # Шаг 4: Запускаем самообучающийся ML (IsolationForest) в отдельном потоке
+    # Он будет переобучаться каждые 30 сек и выводить,
+    # на скольких данных обучился и нашёл ли аномалии (DDoS и т.д.)
+    t_ml = threading.Thread(target=start_self_learning_ml, daemon=True)
+    t_ml.start()
+
+    # Основной поток "оживает" до Ctrl+C
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\n[INFO] Stopped by user (Ctrl+C).")
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("\nMonitoring stopped by user.")
-        exit(0)
+    main()
