@@ -1,16 +1,11 @@
 import psutil
 import socket
 from scapy.layers.l2 import ARP, Ether,srp
-import nmap  # Убедитесь, что установили пакет python-nmap
+import nmap  # установить пакет python-nmap
 
 
 def get_own_network_info():
-    """
-    Возвращает (ip_address, mac_address) текущего хоста.
 
-    На Windows MAC может иметь addr.family == 17 (psutil.AF_LINK).
-    На Linux/macOS - psutil.AF_LINK или AF_PACKET.
-    """
     ip_address = None
     mac_address = None
 
@@ -28,9 +23,7 @@ def get_own_network_info():
 
 
 def scan_network(ip_range="192.168.1.0/24"):
-    """
-    Сканируем сеть по ARP, возвращаем [{'ip': .., 'mac': ..}, ...].
-    """
+
     devices = []
     arp = ARP(pdst=ip_range)
     ether = Ether(dst="ff:ff:ff:ff:ff:ff")
@@ -47,25 +40,7 @@ def scan_network(ip_range="192.168.1.0/24"):
 
 
 def scan_ports_extended(ip_address):
-    """
-    Запускаем nmap со следующими опциями:
-      -sS (SYN scan)
-      -T4 (скорость)
-      -Pn (не пингуем)
-      -sV (определение версий сервисов)
-      -O (определение ОС)
-    Возвращаем структуру вида:
-    {
-      "ports": [
-         {"port": 22, "protocol": "tcp", "service": "ssh", "version": "OpenSSH 8.2"},
-         ...
-      ],
-      "os_match": [
-         {"name": "Linux 3.2 - 4.9", "accuracy": "90", ...},
-         ...
-      ]
-    }
-    """
+
     nm = nmap.PortScanner()
     nm.scan(ip_address, arguments="-sS -T4 -Pn -sV -O")
     results = {

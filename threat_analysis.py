@@ -35,14 +35,9 @@ class ArpSpoofDetector:
 
 
 def check_in_whitelist(mac_address, whitelist):
-    """
-    Проверяем, есть ли MAC в белом списке (WHITELIST).
-    """
+
     return mac_address.lower() in [m.lower() for m in whitelist]
 
-
 def check_in_blacklist(mac_address, blacklist):
-    """
-    Проверяем, есть ли MAC в чёрном списке (BLACKLIST).
-    """
+
     return mac_address.lower() in [m.lower() for m in blacklist]

@@ -17,7 +17,7 @@ def monitor_anomalies():
     normal_data = np.random.normal(1000, 300, (10, 3))
     model.fit(normal_data)
     while True:
-        # Допустим, одна «нормальная» точка, вторая – явно аномальная
+
         test_data = np.array([
             [900, 1100, 950],
             [100000, 99999, 20000]
